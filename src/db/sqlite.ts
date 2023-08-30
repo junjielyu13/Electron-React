@@ -1,0 +1,145 @@
+/* eslint-disable no-return-assign */
+/* eslint-disable consistent-return */
+/* eslint-disable no-console */
+/* eslint-disable prefer-promise-reject-errors */
+/* eslint-disable func-names */
+/* eslint-disable class-methods-use-this */
+import path from 'path';
+import { type Database, verbose } from 'sqlite3';
+
+const TAG = '[sqlite3]';
+
+export default class Sql {
+  private static instance: any;
+
+  public static getInstance(filename = path.join(__dirname, './database.db')) {
+    return (this.instance ??= new Sql(filename));
+  }
+
+  public database: Database;
+
+  private constructor(filename: string) {
+    this.database = new (verbose().Database)(filename, (error) => {
+      if (error) {
+        console.log(TAG, 'INIT FAILD');
+        console.log(error);
+      } else {
+        console.log(TAG, 'INIT SUCCESSFUL');
+        this.create('test', {
+          id: 'integer primary key',
+          name: 'varchar(20)',
+        });
+      }
+    });
+  }
+
+  private objKey(obj: Record<any, any>) {
+    return JSON.stringify(Object.keys(obj)).replace(/[[\]]/g, '');
+  }
+
+  private objVaule(obj: Record<any, any>) {
+    return JSON.stringify(Object.values(obj)).replace(/[[\]]/g, '');
+  }
+
+  private columnDefinitions(obj: Record<any, any>) {
+    return Object.entries(obj)
+      .map(([columnName, columnType]) => `${columnName} ${columnType}`)
+      .join(', ');
+  }
+
+  public create(tableName: string, column: Record<any, string>) {
+    return new Promise((resolve, reject) => {
+      this.database.run(
+        `CREATE TABLE IF NOT EXISTS ${tableName} (${this.columnDefinitions(
+          column
+        )})`,
+        function (err) {
+          if (err) {
+            console.log('err', err);
+            reject(`CREATE ERROR: ${err}`);
+          } else {
+            resolve('CREATE SUCCESS');
+          }
+        }
+      );
+    });
+  }
+
+  public insert(tableName: string, values: Record<any, any>) {
+    return new Promise((resolve, reject) => {
+      this.database.run(
+        `INSERT INTO ${tableName} (${this.objKey(
+          values
+        )}) VALUES(${this.objVaule(values)})`,
+        function (err) {
+          console.log('err', err);
+          if (err) {
+            reject(`INSERT ERROR: ${err}`);
+          } else {
+            resolve('INSERT SUCCESS');
+          }
+        }
+      );
+    });
+  }
+
+  public update(tableName: string, statement: string) {
+    this.database.run(`UPDATE ${tableName} ${statement}`, function (err) {
+      if (err) {
+        return console.log('UPDATE ERROR: ', err.message);
+      }
+      console.log('UPDATE CORRECT: ', this);
+    });
+  }
+
+  public delete(tableName: string, statement: string) {
+    this.database.run(`DELETE FROM ${tableName} ${statement}`, function (err) {
+      if (err) {
+        return console.log(err.message);
+      }
+      console.log('DELETED', this);
+    });
+  }
+
+  public selectAll(tableName: string, statement: string) {
+    return new Promise((resolve, reject) => {
+      this.database.all(
+        `SELECT * FROM ${tableName} ${statement}`,
+        [],
+        function (err, rows) {
+          if (err) {
+            reject(`SELECT ERROR: ${err}`);
+          }
+          console.log('SELECT ALL', rows);
+          resolve(rows);
+        }
+      );
+    });
+  }
+
+  public selectOne(tableName: string, statement: string) {
+    return new Promise((resolve, reject) => {
+      this.database.get(
+        `SELECT * FROM ${tableName} ${statement}`,
+        [],
+        function (err, row) {
+          if (err) {
+            reject(`SELECT ERROR: ${err}`);
+          }
+          console.log('SELECT ONE', row);
+          resolve(row);
+        }
+      );
+    });
+  }
+
+  public close() {
+    this.database.close((err) => {
+      if (err) {
+        console.log(TAG, 'DB CLOSE FAILD', err.message);
+      } else {
+        console.log(TAG, 'DB CLOSE SUCCESSFUL');
+      }
+    });
+  }
+}

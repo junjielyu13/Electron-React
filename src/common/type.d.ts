@@ -1,3 +1,3 @@
 export type ColumnDefinition = {
-    [columnName: string]: string;
-}
+  [columnName: string]: string;
+};
