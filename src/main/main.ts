@@ -1,3 +1,4 @@
+/* eslint-disable no-new */
 /* eslint global-require: off, no-console: off, promise/always-return: off */
 
 /**
@@ -12,9 +13,10 @@ import path from 'path';
 import { app, BrowserWindow, shell, ipcMain } from 'electron';
 import { autoUpdater } from 'electron-updater';
 import log from 'electron-log';
-import Sql from '../db/sqlite';
+import Sql from './db/sqlite';
 import MenuBuilder from './menu';
 import { resolveHtmlPath } from './util';
+import Ipc from './ipc/ipc';
 
 class AppUpdater {
   constructor() {
@@ -128,7 +130,7 @@ app.on('window-all-closed', () => {
 app
   .whenReady()
   .then(() => {
-    Sql.getInstance();
+    new Ipc(Sql.getInstance());
     createWindow();
     app.on('activate', () => {
       // On macOS it's common to re-create a window in the app when the
