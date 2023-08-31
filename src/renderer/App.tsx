@@ -1,8 +1,10 @@
 import { MemoryRouter as Router, Routes, Route } from 'react-router-dom';
-import icon from '../../assets/icon.svg';
-import './css/App.css';
-import TESTAPP from './component/test';
-import Ant from './component/ant';
+// import icon from '../../assets/icon.svg';
+// import './css/App.css';
+import './css/normalize.css';
+// import TESTAPP from './component/test';
+// import Ant from './component/ant';
+import MainLayout from './component/layout';
 
 window.electron.ipcRenderer.once('ipc-example', (arg: any) => {
   console.log(arg);
@@ -10,10 +12,10 @@ window.electron.ipcRenderer.once('ipc-example', (arg: any) => {
 });
 window.electron.ipcRenderer.sendMessage('ipc-example', ['ping']);
 
-function Hello() {
+function Menu() {
   return (
     <div>
-      <div className="Hello">
+      {/* <div className="Hello">
         <img width="200" alt="icon" src={icon} />
       </div>
       <h1>electron-react</h1>
@@ -31,9 +33,17 @@ function Hello() {
           Donate
         </button>
       </div>
-
       <TESTAPP />
-      <Ant />
+      <Ant /> */}
+      <MainLayout />
+    </div>
+  );
+}
+
+function Login() {
+  return (
+    <div>
+      <MainLayout />
     </div>
   );
 }
@@ -42,7 +52,8 @@ export default function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Hello />} />
+        <Route path="/" element={<Menu />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
     </Router>
   );
