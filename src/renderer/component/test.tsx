@@ -1,12 +1,4 @@
-/* eslint-disable no-console */
-/* eslint-disable promise/always-return */
-import React, { useState } from 'react';
-
-declare global {
-  interface Window {
-    test: any;
-  }
-}
+import { useState } from 'react';
 
 function TESTAPP() {
   const [title, setTitle] = useState('');
@@ -18,12 +10,12 @@ function TESTAPP() {
         name: title,
       })
       .then((result: any) => {
-        console.log('Success');
-        console.log(result);
+        console.log(`Success${result}`);
+        return result;
       })
       .catch((error: any) => {
-        console.log('Error');
-        console.error(error);
+        console.log(`Error${error}`);
+        return error;
       });
   };
 

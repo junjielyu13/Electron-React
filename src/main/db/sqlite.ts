@@ -1,16 +1,16 @@
-/* eslint-disable no-return-assign */
-/* eslint-disable consistent-return */
-/* eslint-disable no-console */
 /* eslint-disable prefer-promise-reject-errors */
-/* eslint-disable func-names */
 /* eslint-disable class-methods-use-this */
+/* eslint-disable no-console */
+/* eslint-disable no-use-before-define */
+/* eslint-disable no-return-assign */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import path from 'path';
 import { type Database, verbose } from 'sqlite3';
 
 const TAG = '[sqlite3]';
 
 export default class Sql {
-  private static instance: any;
+  private static instance: Sql;
 
   public static getInstance(filename = path.join(__dirname, './database.db')) {
     return (this.instance ??= new Sql(filename));
@@ -53,7 +53,7 @@ export default class Sql {
         `CREATE TABLE IF NOT EXISTS ${tableName} (${this.columnDefinitions(
           column
         )})`,
-        function (err) {
+        (err) => {
           if (err) {
             console.log('err', err);
             reject(`CREATE ERROR: ${err}`);
@@ -71,7 +71,7 @@ export default class Sql {
         `INSERT INTO ${tableName} (${this.objKey(
           values
         )}) VALUES(${this.objVaule(values)})`,
-        function (err) {
+        (err) => {
           console.log('err', err);
           if (err) {
             reject(`INSERT ERROR: ${err}`);
@@ -84,20 +84,21 @@ export default class Sql {
   }
 
   public update(tableName: string, statement: string) {
-    this.database.run(`UPDATE ${tableName} ${statement}`, function (err) {
+    this.database.run(`UPDATE ${tableName} ${statement}`, (err) => {
       if (err) {
         return console.log('UPDATE ERROR: ', err.message);
       }
-      console.log('UPDATE CORRECT: ', this);
+      return console.log('UPDATE CORRECT: ', this);
     });
   }
 
   public delete(tableName: string, statement: string) {
-    this.database.run(`DELETE FROM ${tableName} ${statement}`, function (err) {
+    this.database.run(`DELETE FROM ${tableName} ${statement}`, (err) => {
       if (err) {
-        return console.log(err.message);
+        console.log(err.message);
+      } else {
+        console.log('DELETED', this);
       }
-      console.log('DELETED', this);
     });
   }
 
@@ -106,7 +107,7 @@ export default class Sql {
       this.database.all(
         `SELECT * FROM ${tableName} ${statement}`,
         [],
-        function (err, rows) {
+        (err, rows) => {
           if (err) {
             reject(`SELECT ERROR: ${err}`);
           }
@@ -122,7 +123,7 @@ export default class Sql {
       this.database.get(
         `SELECT * FROM ${tableName} ${statement}`,
         [],
-        function (err, row) {
+        (err, row) => {
           if (err) {
             reject(`SELECT ERROR: ${err}`);
           }
