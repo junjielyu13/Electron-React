@@ -2,6 +2,7 @@ import { MemoryRouter as Router, Routes, Route } from 'react-router-dom';
 import icon from '../../assets/icon.svg';
 import './css/App.css';
 import TESTAPP from './component/test';
+import Ant from './component/ant';
 
 window.electron.ipcRenderer.once('ipc-example', (arg: any) => {
   console.log(arg);
@@ -32,6 +33,7 @@ function Hello() {
       </div>
 
       <TESTAPP />
+      <Ant />
     </div>
   );
 }
