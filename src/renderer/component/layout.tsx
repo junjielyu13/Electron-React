@@ -1,6 +1,7 @@
 import React from 'react';
 import { Layout, Space } from 'antd';
-import Toolbar from './header';
+import Toolbar from './toolbar';
+import Desk from './desk';
 
 const { Header, Sider, Content } = Layout;
 
@@ -11,7 +12,8 @@ const headerStyle: React.CSSProperties = {
 };
 
 const contentStyle: React.CSSProperties = {
-  backgroundColor: '#108ee9',
+  backgroundColor: '#fff',
+  padding: '14px',
 };
 
 const siderStyle: React.CSSProperties = {
@@ -31,7 +33,9 @@ function MainLayout() {
             <Sider style={siderStyle} width="25%">
               Sider
             </Sider>
-            <Content style={contentStyle}>Content</Content>
+            <Content style={contentStyle}>
+              <Desk />
+            </Content>
           </Layout>
         </Layout>
       </Space>
