@@ -29,24 +29,24 @@ const deskStyle: React.CSSProperties = {
 };
 
 const tables = [
-  '桌子1',
-  '桌子1',
-  '桌子1',
-  '桌子1',
-  '桌子1',
-  '桌子1',
-  '桌子1',
-  '桌子1',
-  '桌子1',
-  '桌子1',
-  '桌子1',
+  '桌子2',
+  '桌子2',
+  '桌子2',
+  '桌子2',
+  '桌子2',
+  '桌子2',
+  '桌子2',
+  '桌子2',
+  '桌子2',
+  '桌子2',
+  '桌子2',
 ];
 
 // function handleClick() {
 //   console.log('You clicked me!');
 // }
 
-function Desk({ onShow }: { onShow: () => void }) {
+function Menu({ onShow }: { onShow: () => void }) {
   const listTable = tables.map((table) => (
     <button type="submit" onClick={onShow} style={deskStyle}>
       {table}
@@ -59,4 +59,4 @@ function Desk({ onShow }: { onShow: () => void }) {
   );
 }
 
-export default Desk;
+export default Menu;
