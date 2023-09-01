@@ -1,11 +1,13 @@
 import React from 'react';
 import { Layout, Space } from 'antd';
+import Toolbar from './header';
 
 const { Header, Sider, Content } = Layout;
 
 const headerStyle: React.CSSProperties = {
   height: '15vh',
-  backgroundColor: '#7dbcea',
+  backgroundColor: '#fff',
+  padding: '14px',
 };
 
 const contentStyle: React.CSSProperties = {
@@ -22,7 +24,9 @@ function MainLayout() {
     <div>
       <Space direction="vertical" style={{ width: '100%' }}>
         <Layout>
-          <Header style={headerStyle}>Header</Header>
+          <Header style={headerStyle}>
+            <Toolbar />
+          </Header>
           <Layout hasSider>
             <Sider style={siderStyle} width="25%">
               Sider

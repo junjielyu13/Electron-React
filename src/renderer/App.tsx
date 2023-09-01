@@ -1,7 +1,7 @@
 import { MemoryRouter as Router, Routes, Route } from 'react-router-dom';
 // import icon from '../../assets/icon.svg';
-// import './css/App.css';
 import './css/normalize.css';
+import './css/App.css';
 // import TESTAPP from './component/test';
 // import Ant from './component/ant';
 import MainLayout from './component/layout';
