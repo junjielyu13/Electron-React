@@ -23,5 +23,10 @@ export default class Ipc {
       const res = await sql.selectAll('desk');
       return res;
     });
+
+    ipcMain.handle('menuTypeRequest', async () => {
+      const res = await sql.selectAll('menu_type');
+      return res;
+    });
   }
 }

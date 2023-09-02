@@ -35,3 +35,9 @@ const requestHandler = {
 };
 contextBridge.exposeInMainWorld('deskRequest', requestHandler);
 export type RequestHandler = typeof requestHandler;
+
+const menutyperequestHandler = {
+  menuTypeRequest: () => ipcRenderer.invoke('menuTypeRequest'),
+};
+contextBridge.exposeInMainWorld('menuTypeRequest', menutyperequestHandler);
+export type MenuTypeRequestHandler = typeof menutyperequestHandler;
