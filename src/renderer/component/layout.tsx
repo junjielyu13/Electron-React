@@ -25,11 +25,11 @@ const siderStyle: React.CSSProperties = {
 };
 
 function MainLayout() {
-  const [showMenu, setShowMenu] = useState(1);
+  const [showMenu, setShowMenu] = useState(0);
 
   const displayMeunu = () => {
     if (showMenu) {
-      return <Menu onShow={() => setShowMenu(0)} />;
+      return <Menu />;
     }
     return <Desk onShow={() => setShowMenu(1)} />;
   };

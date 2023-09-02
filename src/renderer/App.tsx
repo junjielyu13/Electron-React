@@ -2,7 +2,6 @@ import { MemoryRouter as Router, Routes, Route } from 'react-router-dom';
 // import icon from '../../assets/icon.svg';
 import './css/normalize.css';
 import './css/App.css';
-// import TESTAPP from './component/test';
 import MainLayout from './component/layout';
 
 window.electron.ipcRenderer.once('ipc-example', (arg: any) => {

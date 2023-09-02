@@ -32,6 +32,59 @@
   font-size: 1.15rem;
   margin-top: 10px;
 }
+
+.menuContainer{
+  height: 100%;
+  width: 100%;
+  border: 2px solid #4096ff;
+  border-radius: 15px;
+  padding: 20px;
+}
+
+.menuTypeContainer{
+  width: 100%;
+  height: 25%;
+  border: 2px solid #ff4d4f;
+  border-radius: 15px;
+  overflow: auto;
+  padding: 15px;
+}
+
+.menuType{
+  width: 96px;
+  height: 100%;
+  border: 2px solid #ff4d4f;
+  border-radius: 15px;
+  float: left;
+  margin-right: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bolder;
+  font-size: 1.55rem;
+}
+
+.menuItemContainer{
+  overflow: hidden;
+  padding-top: 20px;
+}
+
+.menuItem{
+  width: 120px;
+  height: 50px;
+  float: left;
+  margin-right: 40px;
+  margin-bottom: 20px;
+  border: 2px solid #4096ff;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bolder;
+  font-size: 1.25rem;
+  
+}
+
 /* body {
   position: relative;
   color: white;
