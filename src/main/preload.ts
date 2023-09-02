@@ -29,3 +29,9 @@ const testHandler = {
 };
 contextBridge.exposeInMainWorld(IPC.TEST, testHandler);
 export type TestHandler = typeof testHandler;
+
+const requestHandler = {
+  request: () => ipcRenderer.invoke('deskRequest'),
+};
+contextBridge.exposeInMainWorld('deskRequest', requestHandler);
+export type RequestHandler = typeof requestHandler;

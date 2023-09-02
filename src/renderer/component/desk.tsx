@@ -28,28 +28,24 @@ const deskStyle: React.CSSProperties = {
   fontSize: '1.2rem',
 };
 
-const tables = [
-  '桌子1',
-  '桌子1',
-  '桌子1',
-  '桌子1',
-  '桌子1',
-  '桌子1',
-  '桌子1',
-  '桌子1',
-  '桌子1',
-  '桌子1',
-  '桌子1',
-];
+let tables: any;
 
-// function handleClick() {
-//   console.log('You clicked me!');
-// }
+window.deskRequest
+  .request()
+  .then((result: any) => {
+    console.log(`Success${result}`);
+    console.log(result);
+    tables = result;
+  })
+  .catch((error: any) => {
+    console.log(`Error${error}`);
+    return error;
+  });
 
 function Desk({ onShow }: { onShow: () => void }) {
-  const listTable = tables.map((table) => (
-    <button type="submit" onClick={onShow} style={deskStyle}>
-      {table}
+  const listTable = tables.map((table: any) => (
+    <button type="submit" onClick={onShow} style={deskStyle} key={table.id}>
+      {table.name}
     </button>
   ));
   return (

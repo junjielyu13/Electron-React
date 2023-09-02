@@ -19,7 +19,7 @@ export default class Sql {
   public database: Database;
 
   private constructor(filename: string) {
-    this.database = new (verbose().Database)(filename, (error) => {
+    this.database = new (verbose().Database)(filename, async (error) => {
       if (error) {
         console.log(TAG, 'INIT FAILD');
         console.log(error);
@@ -29,19 +29,19 @@ export default class Sql {
           id: 'integer primary key',
           name: 'varchar(20)',
         });
-        this.create('desk', {
+        await this.create('desk', {
           id: 'INTEGER PRIMARY KEY AUTOINCREMENT',
           name: 'TEXT NOT NULL UNIQUE',
           type: 'INTEGER DEFAULT 0 CHECK (type = 0 OR type = 1) ',
           created_at: 'DATETIME DEFAULT CURRENT_TIMESTAMP',
         });
 
-        this.insert('desk', { name: '桌子1' });
-        this.insert('desk', { name: '桌子2' });
-        this.insert('desk', { name: '桌子3' });
-        this.insert('desk', { name: '桌子4' });
-        this.insert('desk', { name: '桌子5' });
-        this.insert('desk', { name: '桌子6' });
+        await this.insert('desk', { name: '桌子1' });
+        await this.insert('desk', { name: '桌子2' });
+        await this.insert('desk', { name: '桌子3' });
+        await this.insert('desk', { name: '桌子4' });
+        await this.insert('desk', { name: '桌子5' });
+        await this.insert('desk', { name: '桌子6' });
       }
     });
   }
@@ -60,7 +60,7 @@ export default class Sql {
       .join(', ');
   }
 
-  public create(tableName: string, column: Record<any, string>) {
+  public async create(tableName: string, column: Record<any, string>) {
     return new Promise((resolve, reject) => {
       this.database.run(
         `CREATE TABLE IF NOT EXISTS ${tableName} (${this.columnDefinitions(
@@ -78,7 +78,7 @@ export default class Sql {
     });
   }
 
-  public insert(tableName: string, values: Record<any, any>) {
+  public async insert(tableName: string, values: Record<any, any>) {
     return new Promise((resolve, reject) => {
       this.database.run(
         `INSERT INTO ${tableName} (${this.objKey(
@@ -115,7 +115,7 @@ export default class Sql {
     });
   }
 
-  public selectAll(tableName: string, statement: string) {
+  public selectAll(tableName: string, statement: string = '') {
     return new Promise((resolve, reject) => {
       this.database.all(
         `SELECT * FROM ${tableName} ${statement}`,
@@ -124,7 +124,7 @@ export default class Sql {
           if (err) {
             reject(`SELECT ERROR: ${err}`);
           }
-          console.log('SELECT ALL', rows);
+          // console.log('SELECT ALL', rows);
           resolve(rows);
         }
       );

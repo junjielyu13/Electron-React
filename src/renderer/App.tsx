@@ -4,11 +4,11 @@ import './css/normalize.css';
 import './css/App.css';
 import MainLayout from './component/layout';
 
+window.electron.ipcRenderer.sendMessage('ipc-example', ['ping']);
 window.electron.ipcRenderer.once('ipc-example', (arg: any) => {
   console.log(arg);
   console.log(`!!!!!${arg}`);
 });
-window.electron.ipcRenderer.sendMessage('ipc-example', ['ping']);
 
 export default function App() {
   return (

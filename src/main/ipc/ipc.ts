@@ -18,5 +18,10 @@ export default class Ipc {
         msg: res,
       };
     });
+
+    ipcMain.handle('deskRequest', async () => {
+      const res = await sql.selectAll('desk');
+      return res;
+    });
   }
 }
