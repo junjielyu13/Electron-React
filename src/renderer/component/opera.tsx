@@ -26,20 +26,6 @@ const operaListStyle: React.CSSProperties = {
   overflow: 'auto',
 };
 
-const operaItem: React.CSSProperties = {
-  width: '100%',
-  height: '23%',
-  border: '2px solid #4096ff',
-  borderRadius: '15px',
-  margin: '5px 0',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'space-between',
-  padding: '5px',
-  fontWeight: '500',
-  fontSize: '1.25rem',
-};
-
 const resultListStyle: React.CSSProperties = {
   width: '100%',
   height: '20%',
@@ -71,46 +57,37 @@ const operaSmallButtonStyle: React.CSSProperties = {
   fontSize: '1.15rem',
 };
 
-const operaBigButtonStyle: React.CSSProperties = {
-  height: '40px',
-  border: '2px solid #ff4d4f',
-  borderRadius: '7px',
-  fontWeight: 'bolder',
-  fontSize: '1.15rem',
-  marginTop: '10px',
-};
-
 function Opera({ onShow }: { onShow: () => void }) {
   return (
     <div style={operaBoxStyle}>
       <div style={operaListAreaStyle}>
         <div style={operaListStyle}>
-          <div style={operaItem}>
+          <div className="operaItem">
             <div>菜品4</div>
             <div>x10</div>
             <div>20.0</div>
           </div>
-          <div style={operaItem}>
+          <div className="operaItem">
             <div>菜品4</div>
             <div>x10</div>
             <div>20.0</div>
-          </div>{' '}
-          <div style={operaItem}>
+          </div>
+          <div className="operaItem">
             <div>菜品4</div>
             <div>x10</div>
             <div>20.0</div>
-          </div>{' '}
-          <div style={operaItem}>
+          </div>
+          <div className="operaItem">
             <div>菜品4</div>
             <div>x10</div>
             <div>20.0</div>
-          </div>{' '}
-          <div style={operaItem}>
+          </div>
+          <div className="operaItem">
             <div>菜品4</div>
             <div>x10</div>
             <div>20.0</div>
-          </div>{' '}
-          <div style={operaItem}>
+          </div>
+          <div className="operaItem">
             <div>菜品4</div>
             <div>x10</div>
             <div>20.0</div>
@@ -128,7 +105,7 @@ function Opera({ onShow }: { onShow: () => void }) {
           </Button>
         </div>
         <div>
-          <Button style={operaBigButtonStyle} block>
+          <Button className="operaBigButton" block>
             结账
           </Button>
         </div>
