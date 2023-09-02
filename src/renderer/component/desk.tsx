@@ -33,8 +33,6 @@ let tables: any;
 window.deskRequest
   .request()
   .then((result: any) => {
-    console.log(`Success${result}`);
-    console.log(result);
     tables = result;
   })
   .catch((error: any) => {

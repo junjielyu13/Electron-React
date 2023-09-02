@@ -24,24 +24,7 @@ export default class Sql {
         console.log(TAG, 'INIT FAILD');
         console.log(error);
       } else {
-        console.log(TAG, 'INIT SUCCESSFUL');
-        this.create('test', {
-          id: 'integer primary key',
-          name: 'varchar(20)',
-        });
-        await this.create('desk', {
-          id: 'INTEGER PRIMARY KEY AUTOINCREMENT',
-          name: 'TEXT NOT NULL UNIQUE',
-          type: 'INTEGER DEFAULT 0 CHECK (type = 0 OR type = 1) ',
-          created_at: 'DATETIME DEFAULT CURRENT_TIMESTAMP',
-        });
-
-        await this.insert('desk', { name: '桌子1' });
-        await this.insert('desk', { name: '桌子2' });
-        await this.insert('desk', { name: '桌子3' });
-        await this.insert('desk', { name: '桌子4' });
-        await this.insert('desk', { name: '桌子5' });
-        await this.insert('desk', { name: '桌子6' });
+        await this.initDB();
       }
     });
   }
@@ -155,5 +138,39 @@ export default class Sql {
         console.log(TAG, 'DB CLOSE SUCCESSFUL');
       }
     });
+  }
+
+  private async initDB() {
+    console.log(TAG, 'INIT SUCCESSFUL');
+    this.create('test', {
+      id: 'integer primary key',
+      name: 'varchar(20)',
+    });
+    await this.create('desk', {
+      id: 'INTEGER PRIMARY KEY AUTOINCREMENT',
+      name: 'TEXT NOT NULL UNIQUE',
+      type: 'INTEGER DEFAULT 0 CHECK (type = 0 OR type = 1) ',
+      created_at: 'DATETIME DEFAULT CURRENT_TIMESTAMP',
+    });
+
+    await this.insert('desk', { name: '桌子1' });
+    await this.insert('desk', { name: '桌子2' });
+    await this.insert('desk', { name: '桌子3' });
+    await this.insert('desk', { name: '桌子4' });
+    await this.insert('desk', { name: '桌子5' });
+    await this.insert('desk', { name: '桌子6' });
+
+    await this.create('menu_type', {
+      id: 'INTEGER PRIMARY KEY AUTOINCREMENT',
+      name: 'TEXT NOT NULL UNIQUE',
+      created_at: 'DATETIME DEFAULT CURRENT_TIMESTAMP',
+    });
+
+    await this.insert('menu_type', { name: '饮料' });
+    await this.insert('menu_type', { name: '酒水' });
+    await this.insert('menu_type', { name: '面包' });
+    await this.insert('menu_type', { name: '正餐' });
+    await this.insert('menu_type', { name: '点心' });
+    await this.insert('menu_type', { name: '其它' });
   }
 }
