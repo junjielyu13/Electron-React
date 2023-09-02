@@ -48,13 +48,19 @@ const tables = [
 
 function Menu({ onShow }: { onShow: () => void }) {
   const listTable = tables.map((table) => (
-    <button type="submit" onClick={onShow} style={deskStyle}>
+    <button type="submit" style={deskStyle}>
       {table}
     </button>
   ));
+
   return (
     <div style={deskBoxStyle}>
-      <div style={deskContainerStyle}>{listTable}</div>
+      <div style={deskContainerStyle}>
+        <button type="submit" onClick={onShow} style={deskStyle}>
+          返回
+        </button>
+        {listTable}
+      </div>
     </div>
   );
 }

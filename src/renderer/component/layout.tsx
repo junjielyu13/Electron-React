@@ -3,6 +3,7 @@ import { Layout, Space } from 'antd';
 import Toolbar from './toolbar';
 import Desk from './desk';
 import Menu from './menu';
+import Opera from './opera';
 
 const { Header, Sider, Content } = Layout;
 
@@ -19,7 +20,8 @@ const contentStyle: React.CSSProperties = {
 
 const siderStyle: React.CSSProperties = {
   height: '85vh',
-  backgroundColor: '#3ba0e9',
+  backgroundColor: '#fff',
+  padding: '14px',
 };
 
 function MainLayout() {
@@ -41,7 +43,7 @@ function MainLayout() {
           </Header>
           <Layout hasSider>
             <Sider style={siderStyle} width="25%">
-              Sider
+              <Opera onShow={() => setShowMenu(0)} />
             </Sider>
             <Content style={contentStyle}>{displayMeunu()}</Content>
           </Layout>
