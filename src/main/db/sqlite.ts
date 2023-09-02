@@ -29,6 +29,19 @@ export default class Sql {
           id: 'integer primary key',
           name: 'varchar(20)',
         });
+        this.create('desk', {
+          id: 'INTEGER PRIMARY KEY AUTOINCREMENT',
+          name: 'TEXT NOT NULL UNIQUE',
+          type: 'INTEGER DEFAULT 0 CHECK (type = 0 OR type = 1) ',
+          created_at: 'DATETIME DEFAULT CURRENT_TIMESTAMP',
+        });
+
+        this.insert('desk', { name: '桌子1' });
+        this.insert('desk', { name: '桌子2' });
+        this.insert('desk', { name: '桌子3' });
+        this.insert('desk', { name: '桌子4' });
+        this.insert('desk', { name: '桌子5' });
+        this.insert('desk', { name: '桌子6' });
       }
     });
   }
