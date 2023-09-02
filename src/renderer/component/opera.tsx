@@ -55,14 +55,32 @@ const resultListStyle: React.CSSProperties = {
 const operaButtonAreaStyle: React.CSSProperties = {
   height: '25%',
   width: '100%',
-  backgroundColor: 'pink',
   padding: '10px 15px',
 };
 
+const operaSmallButtonAreaStyle: React.CSSProperties = {
+  display: 'flex',
+  justifyContent: 'space-between',
+};
+
+const operaSmallButtonStyle: React.CSSProperties = {
+  width: '45%',
+  border: '2px solid #ff4d4f',
+  borderRadius: '7px',
+  fontWeight: 'bolder',
+  fontSize: '1.15rem',
+};
+
+const operaBigButtonStyle: React.CSSProperties = {
+  height: '40px',
+  border: '2px solid #ff4d4f',
+  borderRadius: '7px',
+  fontWeight: 'bolder',
+  fontSize: '1.15rem',
+  marginTop: '10px',
+};
+
 function Opera({ onShow }: { onShow: () => void }) {
-
-    
-
   return (
     <div style={operaBoxStyle}>
       <div style={operaListAreaStyle}>
@@ -101,14 +119,18 @@ function Opera({ onShow }: { onShow: () => void }) {
         <div style={resultListStyle}>总价格: 10000.00€</div>
       </div>
       <div style={operaButtonAreaStyle}>
-        <div>
-          <Button size="large">清空</Button>
-          <Button size="large" onClick={onShow}>
+        <div style={operaSmallButtonAreaStyle}>
+          <Button style={operaSmallButtonStyle} size="large">
+            清空
+          </Button>
+          <Button style={operaSmallButtonStyle} size="large" onClick={onShow}>
             挂单
           </Button>
         </div>
         <div>
-          <Button block>结账</Button>
+          <Button style={operaBigButtonStyle} block>
+            结账
+          </Button>
         </div>
       </div>
     </div>
