@@ -10,6 +10,44 @@
   padding: '14px';
 }
 
+
+.opera-box{
+  height: 100%;
+  width: 100%;
+  border: 2px solid #4096ff;
+  border-radius: 15px;
+  padding: 15px 10px;
+}
+
+.opera-list-area{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 75%;
+  width: 100%;
+  border: 2px solid #4096ff;
+  border-radius: 15px;
+  padding: 10px 10px;
+}
+
+.opera-list{
+  width: 100%;
+  height: 78%;
+  overflow: auto;
+}
+
+.opera-result-list{
+  width: 100%;
+  height: 20%;
+  border: 2px solid #4096ff;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bolder;
+  font-size: 1.25rem;
+}
+
 .operaItem{
   width: 100%;
   height: 23%;
@@ -24,7 +62,26 @@
   font-size: 1.25rem;
 }
 
-.operaBigButton{
+.opera-button-area{
+  height: 25%;
+  width: 100%;
+  padding: 10px 15px;
+}
+
+.opera-small-button-area{
+  display: flex;
+  justify-content: space-between;
+}
+
+.opera-small-button{
+  width: 45%;
+  border: 2px solid #ff4d4f;
+  border-radius: 7px;
+  font-weight: bolder;
+  font-size: 1.15rem;
+}
+
+.opera-big-button{
   height: 40px;
   border: 2px solid #ff4d4f;
   border-radius: 7px;
@@ -32,6 +89,20 @@
   font-size: 1.15rem;
   margin-top: 10px;
 }
+
+
+.desk-box{
+  height: 100%;
+  width: 100%;
+  border: 2px solid #4096ff;
+  border-radius: 15px;
+}
+
+.desk-container{
+  height: 100%;
+  overflow: hidden;
+}
+
 
 .menuContainer{
   height: 100%;
@@ -47,16 +118,16 @@
   border: 2px solid #ff4d4f;
   border-radius: 15px;
   overflow: auto;
-  padding: 15px;
 }
 
 .menuType{
   width: 96px;
-  height: 100%;
+  height: 80%;
   border: 2px solid #ff4d4f;
   border-radius: 15px;
   float: left;
-  margin-right: 15px;
+  margin-top: 15px;
+  margin-left: 15px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -84,62 +155,3 @@
   font-size: 1.25rem;
   
 }
-
-/* body {
-  position: relative;
-  color: white;
-  height: 100vh;
-  background: linear-gradient(
-    200.96deg,
-    #fedc2a -29.09%,
-    #dd5789 51.77%,
-    #7a2c9e 129.35%
-  );
-  font-family: sans-serif;
-  overflow-y: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-button {
-  background-color: white;
-  padding: 10px 20px;
-  border-radius: 10px;
-  border: none;
-  appearance: none;
-  font-size: 1.3rem;
-  box-shadow: 0px 8px 28px -6px rgba(24, 39, 75, 0.12),
-    0px 18px 88px -4px rgba(24, 39, 75, 0.14);
-  transition: all ease-in 0.1s;
-  cursor: pointer;
-  opacity: 0.9;
-}
-
-button:hover {
-  transform: scale(1.05);
-  opacity: 1;
-}
-
-li {
-  list-style: none;
-}
-
-a {
-  text-decoration: none;
-  height: fit-content;
-  width: fit-content;
-  margin: 10px;
-}
-
-a:hover {
-  opacity: 1;
-  text-decoration: none;
-}
-
-.Hello {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 20px 0;
-} */
