@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { Button } from 'antd';
+
 let menuTypes: any;
 
 window.menuTypeRequest
@@ -14,27 +16,27 @@ window.menuTypeRequest
 
 function Menu() {
   const menuTypeTable = menuTypes.map((menuType: any) => (
-    <div className="menuType" key={menuType.id}>
+    <Button className="menuType" key={menuType.id}>
       {menuType.name}
-    </div>
+    </Button>
   ));
 
   return (
     <div className="menuContainer">
       <div className="menuTypeContainer">{menuTypeTable}</div>
       <div className="menuItemContainer">
-        <div className="menuItem">菜品</div>
-        <div className="menuItem">菜品</div>
-        <div className="menuItem">菜品</div>
-        <div className="menuItem">菜品</div>
-        <div className="menuItem">菜品</div>
-        <div className="menuItem">菜品</div>
-        <div className="menuItem">菜品</div>
-        <div className="menuItem">菜品</div>
-        <div className="menuItem">菜品</div>
-        <div className="menuItem">菜品</div>
-        <div className="menuItem">菜品</div>
-        <div className="menuItem">菜品</div>
+        <Button className="menuItem">菜品</Button>
+        <Button className="menuItem">菜品</Button>
+        <Button className="menuItem">菜品</Button>
+        <Button className="menuItem">菜品</Button>
+        <Button className="menuItem">菜品</Button>
+        <Button className="menuItem">菜品</Button>
+        <Button className="menuItem">菜品</Button>
+        <Button className="menuItem">菜品</Button>
+        <Button className="menuItem">菜品</Button>
+        <Button className="menuItem">菜品</Button>
+        <Button className="menuItem">菜品</Button>
+        <Button className="menuItem">菜品</Button>
       </div>
     </div>
   );

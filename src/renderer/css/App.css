@@ -118,16 +118,16 @@
   border: 2px solid #ff4d4f;
   border-radius: 15px;
   overflow: auto;
-  padding: 15px;
 }
 
 .menuType{
   width: 96px;
-  height: 100%;
+  height: 80%;
   border: 2px solid #ff4d4f;
   border-radius: 15px;
   float: left;
-  margin-right: 15px;
+  margin-top: 15px;
+  margin-left: 15px;
   display: flex;
   align-items: center;
   justify-content: center;

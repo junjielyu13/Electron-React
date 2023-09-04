@@ -6,36 +6,36 @@ function Opera({ onShow }: { onShow: () => void }) {
     <div className="opera-box">
       <div className="opera-list-area">
         <div className="opera-list">
-          <div className="operaItem">
+          <Button className="operaItem">
             <div>菜品4</div>
             <div>x10</div>
             <div>20.0</div>
-          </div>
-          <div className="operaItem">
+          </Button>
+          <Button className="operaItem">
             <div>菜品4</div>
             <div>x10</div>
             <div>20.0</div>
-          </div>
-          <div className="operaItem">
+          </Button>
+          <Button className="operaItem">
             <div>菜品4</div>
             <div>x10</div>
             <div>20.0</div>
-          </div>
-          <div className="operaItem">
+          </Button>
+          <Button className="operaItem">
             <div>菜品4</div>
             <div>x10</div>
             <div>20.0</div>
-          </div>
-          <div className="operaItem">
+          </Button>
+          <Button className="operaItem">
             <div>菜品4</div>
             <div>x10</div>
             <div>20.0</div>
-          </div>
-          <div className="operaItem">
+          </Button>
+          <Button className="operaItem">
             <div>菜品4</div>
             <div>x10</div>
             <div>20.0</div>
-          </div>
+          </Button>
         </div>
         <div className="opera-result-list">总价格: 10000.00€</div>
       </div>
