@@ -1,16 +1,6 @@
 import React from 'react';
 
-const deskBoxStyle: React.CSSProperties = {
-  height: '100%',
-  width: '100%',
-  border: '2px solid #4096ff',
-  borderRadius: '15px',
-};
-
-const deskContainerStyle: React.CSSProperties = {
-  height: '100%',
-  overflow: 'hidden',
-};
+import { Button } from 'antd';
 
 const deskStyle: React.CSSProperties = {
   width: '130px',
@@ -42,13 +32,13 @@ window.deskRequest
 
 function Desk({ onShow }: { onShow: () => void }) {
   const listTable = tables.map((table: any) => (
-    <button type="submit" onClick={onShow} style={deskStyle} key={table.id}>
+    <Button onClick={onShow} style={deskStyle} key={table.id}>
       {table.name}
-    </button>
+    </Button>
   ));
   return (
-    <div style={deskBoxStyle}>
-      <div style={deskContainerStyle}>{listTable}</div>
+    <div className="desk-box">
+      <div className="desk-container">{listTable}</div>
     </div>
   );
 }
