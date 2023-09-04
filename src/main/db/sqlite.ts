@@ -84,7 +84,7 @@ export default class Sql {
       if (err) {
         return console.log('UPDATE ERROR: ', err.message);
       }
-      return console.log('UPDATE CORRECT: ', this);
+      return this;
     });
   }
 
@@ -92,8 +92,6 @@ export default class Sql {
     this.database.run(`DELETE FROM ${tableName} ${statement}`, (err) => {
       if (err) {
         console.log(err.message);
-      } else {
-        console.log('DELETED', this);
       }
     });
   }
@@ -107,7 +105,6 @@ export default class Sql {
           if (err) {
             reject(`SELECT ERROR: ${err}`);
           }
-          // console.log('SELECT ALL', rows);
           resolve(rows);
         }
       );
@@ -123,7 +120,6 @@ export default class Sql {
           if (err) {
             reject(`SELECT ERROR: ${err}`);
           }
-          console.log('SELECT ONE', row);
           resolve(row);
         }
       );
@@ -140,43 +136,76 @@ export default class Sql {
     });
   }
 
+  private async isInitDB(): Promise<boolean> {
+    let isInitDB: boolean = false;
+    await this.selectOne('users', 'WHERE is_root = 1')
+      .then(() => {
+        isInitDB = false;
+      })
+      .catch(() => {
+        isInitDB = true;
+      });
+    return isInitDB;
+  }
+
   private async initDB() {
+    if (await this.isInitDB()) {
+      this.create('test', {
+        id: 'integer primary key',
+        name: 'varchar(20)',
+      });
+
+      await this.create('users', {
+        id: 'INTEGER PRIMARY KEY AUTOINCREMENT',
+        username: 'TEXT NOT NULL UNIQUE',
+        password: 'TEXT NOT NULL',
+        is_root: 'INTEGER DEFAULT 0',
+        is_admin: 'INTEGER DEFAULT 0',
+        created_at: 'TIMESTAMP DEFAULT CURRENT_TIMESTAMP',
+        updated_at: 'TIMESTAMP DEFAULT CURRENT_TIMESTAMP',
+      });
+
+      this.insert('users', {
+        id: 1,
+        username: 'admin',
+        password: 'admin',
+        is_root: '1',
+        is_admin: '1',
+      });
+
+      await this.create('desk', {
+        id: 'INTEGER PRIMARY KEY AUTOINCREMENT',
+        name: 'TEXT NOT NULL UNIQUE',
+        type: 'INTEGER DEFAULT 0 CHECK (type = 0 OR type = 1) ',
+        created_at: 'DATETIME DEFAULT CURRENT_TIMESTAMP',
+      });
+
+      await this.insert('desk', { name: '桌子1' });
+      await this.insert('desk', { name: '桌子2' });
+      await this.insert('desk', { name: '桌子3' });
+      await this.insert('desk', { name: '桌子4' });
+      await this.insert('desk', { name: '桌子5' });
+      await this.insert('desk', { name: '桌子6' });
+
+      await this.create('menu_type', {
+        id: 'INTEGER PRIMARY KEY AUTOINCREMENT',
+        name: 'TEXT NOT NULL UNIQUE',
+        created_at: 'DATETIME DEFAULT CURRENT_TIMESTAMP',
+      });
+
+      await this.insert('menu_type', { name: '饮料' });
+      await this.insert('menu_type', { name: '酒水' });
+      await this.insert('menu_type', { name: '面包' });
+      await this.insert('menu_type', { name: '正餐' });
+      await this.insert('menu_type', { name: '点心' });
+      await this.insert('menu_type', { name: '其它' });
+
+      await this.create('menu_item', {
+        id: 'INTEGER PRIMARY KEY AUTOINCREMENT',
+        name: 'TEXT NOT NULL UNIQUE',
+        created_at: 'DATETIME DEFAULT CURRENT_TIMESTAMP',
+      });
+    }
     console.log(TAG, 'INIT SUCCESSFUL');
-    this.create('test', {
-      id: 'integer primary key',
-      name: 'varchar(20)',
-    });
-    await this.create('desk', {
-      id: 'INTEGER PRIMARY KEY AUTOINCREMENT',
-      name: 'TEXT NOT NULL UNIQUE',
-      type: 'INTEGER DEFAULT 0 CHECK (type = 0 OR type = 1) ',
-      created_at: 'DATETIME DEFAULT CURRENT_TIMESTAMP',
-    });
-
-    await this.insert('desk', { name: '桌子1' });
-    await this.insert('desk', { name: '桌子2' });
-    await this.insert('desk', { name: '桌子3' });
-    await this.insert('desk', { name: '桌子4' });
-    await this.insert('desk', { name: '桌子5' });
-    await this.insert('desk', { name: '桌子6' });
-
-    await this.create('menu_type', {
-      id: 'INTEGER PRIMARY KEY AUTOINCREMENT',
-      name: 'TEXT NOT NULL UNIQUE',
-      created_at: 'DATETIME DEFAULT CURRENT_TIMESTAMP',
-    });
-
-    await this.insert('menu_type', { name: '饮料' });
-    await this.insert('menu_type', { name: '酒水' });
-    await this.insert('menu_type', { name: '面包' });
-    await this.insert('menu_type', { name: '正餐' });
-    await this.insert('menu_type', { name: '点心' });
-    await this.insert('menu_type', { name: '其它' });
-
-    await this.create('menu_item', {
-      id: 'INTEGER PRIMARY KEY AUTOINCREMENT',
-      name: 'TEXT NOT NULL UNIQUE',
-      created_at: 'DATETIME DEFAULT CURRENT_TIMESTAMP',
-    });
   }
 }
