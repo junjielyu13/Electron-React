@@ -172,5 +172,11 @@ export default class Sql {
     await this.insert('menu_type', { name: '正餐' });
     await this.insert('menu_type', { name: '点心' });
     await this.insert('menu_type', { name: '其它' });
+
+    await this.create('menu_item', {
+      id: 'INTEGER PRIMARY KEY AUTOINCREMENT',
+      name: 'TEXT NOT NULL UNIQUE',
+      created_at: 'DATETIME DEFAULT CURRENT_TIMESTAMP',
+    });
   }
 }
