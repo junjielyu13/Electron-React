@@ -15,8 +15,8 @@ export default function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<TEST2APP />} />
-        <Route path="/login" element={<MainLayout />} />
+        <Route path="/login" element={<TEST2APP />} />
+        <Route path="/" element={<MainLayout />} />
       </Routes>
     </Router>
   );
